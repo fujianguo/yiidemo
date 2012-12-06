@@ -39,7 +39,7 @@ class Author extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id', 'required'),
+			array('uname', 'required'),
 			array('id', 'numerical', 'integerOnly'=>true),
 			array('uname', 'length', 'max'=>50),
 			array('avatar', 'length', 'max'=>255),
@@ -91,5 +91,14 @@ class Author extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	public function getAvatar()
+	{
+		$avatars = array();
+		if ($this->avatar) {
+			$avatars = explode(",", $this->avatar);
+		}
+		return $avatars;
 	}
 }

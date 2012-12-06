@@ -42,36 +42,7 @@
 	</div><!-- header -->
 
 	<div id="mainMbMenu">
-		<?php $this->widget('application.extensions.mbmenu.MbMenu',array(
-            'items'=>array(
-                array('label'=>'Home', 'url'=>array('/site/index')),
-				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-                array('label'=>'Demos',
-                  'items'=>array(
-                    array('label'=>'ActiveRecord',
-						'items' => array(
-							array('label'=>'Relations','url'=>array('demo/relations')),
-						),
-					),
-                    array('label'=>'UI',
-                      'items'=>array(
-                        array('label'=>'Dialoge', 'url'=>array('/demo/page','view'=>'juidialog')),
-                        array('label'=>'Sub sub 2', 'url'=>array('/site/page','view'=>'subsub2')),
-                      ),
-                    ),
-                  ),
-                ),
-				array('label'=>'Contact', 'url'=>array('/site/contact'),
-					'items'=>array(
-						array('label'=>'sub 1 contact'),
-						array('label'=>'sub 2 contact'),
-				),
-				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
-
-			),
-         ),
-    )); ?>
+		<?php $this->widget('application.extensions.mbmenu.MbMenu',$this->menu); ?>
 	</div><!-- mainmenu -->
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(

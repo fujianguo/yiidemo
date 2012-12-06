@@ -42,6 +42,8 @@ class SiteController extends Controller
 			if(Yii::app()->request->isAjaxRequest)
 				echo $error['message'];
 			else
+				$menu = Menu::getInstance();
+				$menu->addMenuItem(0, new MenuItem('Error',array('/site/error')));
 				$this->render('error', $error);
 		}
 	}

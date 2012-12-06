@@ -20,4 +20,13 @@ class Controller extends CController
 	 * for more details on how to specify this property.
 	 */
 	public $breadcrumbs=array();
+	
+	public function __construct($id,CWebModule $moudule=null)
+	{
+		parent::__construct($id,$moudule);
+		$menu = Menu::getInstance();
+		$this->menu = &$menu->menu;
+	}
+	
+
 }

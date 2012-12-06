@@ -46,12 +46,16 @@
             'items'=>array(
                 array('label'=>'Home', 'url'=>array('/site/index')),
 				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-                array('label'=>'Test',
+                array('label'=>'Demos',
                   'items'=>array(
-                    array('label'=>'Sub 1', 'url'=>array('/site/page','view'=>'sub1')),
-                    array('label'=>'Sub 2',
+                    array('label'=>'ActiveRecord',
+						'items' => array(
+							array('label'=>'Relations','url'=>array('demo/relations')),
+						),
+					),
+                    array('label'=>'UI',
                       'items'=>array(
-                        array('label'=>'Sub sub 1', 'url'=>array('/site/page','view'=>'subsub1')),
+                        array('label'=>'Dialoge', 'url'=>array('/demo/page','view'=>'juidialog')),
                         array('label'=>'Sub sub 2', 'url'=>array('/site/page','view'=>'subsub2')),
                       ),
                     ),

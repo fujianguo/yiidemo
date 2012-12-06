@@ -16,6 +16,7 @@
  */
 class Post extends CActiveRecord
 {
+	public $verifyCode;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -42,13 +43,14 @@ class Post extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, uid', 'required'),
+			array('title,content', 'required'),
 			array('id, uid, createdat', 'numerical', 'integerOnly'=>true),
 			array('title', 'length', 'max'=>100),
 			array('content', 'safe'),
+			array('verifyCode','captcha', 'allowEmpty'=>!CCaptcha::checkRequirements()),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, uid, title, content, createdat', 'safe', 'on'=>'search'),
+			array('id, uid, title, content, createdat,verifyCode', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -76,6 +78,7 @@ class Post extends CActiveRecord
 			'title' => 'Title',
 			'content' => 'Content',
 			'createdat' => 'Createdat',
+			'verifyCode' => 'verifyCode',
 		);
 	}
 

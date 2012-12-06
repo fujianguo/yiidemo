@@ -16,6 +16,19 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+	<style type="test/css">
+	
+	#user-links .name {
+    font-weight: bold;
+    white-space: nowrap;
+	}
+	#user-links a {
+    color: #333333;
+    display: block;
+    line-height: 16px;
+    padding: 12px 5px 10px;
+	}
+	</style>
 </head>
 
 <body>
@@ -23,19 +36,38 @@
 <div class="container" id="page">
 
 	<div id="header">
-		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
+		<div id="logo"><a class="name" href="https://github.com/fujianguo">
+          <img width="20" height="20" src="https://secure.gravatar.com/avatar/6f6eb96f93b15c78fc8ad1a8a9085952?s=140&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"> fujianguo
+        </a><?php echo CHtml::encode(Yii::app()->name); ?></div>
 	</div><!-- header -->
 
-	<div id="mainmenu">
-		<?php $this->widget('zii.widgets.CMenu',array(
-			'items'=>array(
-				array('label'=>'Home', 'url'=>array('/site/index')),
+	<div id="mainMbMenu">
+		<?php $this->widget('application.extensions.mbmenu.MbMenu',array(
+            'items'=>array(
+                array('label'=>'Home', 'url'=>array('/site/index')),
 				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>'Contact', 'url'=>array('/site/contact')),
+                array('label'=>'Test',
+                  'items'=>array(
+                    array('label'=>'Sub 1', 'url'=>array('/site/page','view'=>'sub1')),
+                    array('label'=>'Sub 2',
+                      'items'=>array(
+                        array('label'=>'Sub sub 1', 'url'=>array('/site/page','view'=>'subsub1')),
+                        array('label'=>'Sub sub 2', 'url'=>array('/site/page','view'=>'subsub2')),
+                      ),
+                    ),
+                  ),
+                ),
+				array('label'=>'Contact', 'url'=>array('/site/contact'),
+					'items'=>array(
+						array('label'=>'sub 1 contact'),
+						array('label'=>'sub 2 contact'),
+				),
 				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+
 			),
-		)); ?>
+         ),
+    )); ?>
 	</div><!-- mainmenu -->
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
